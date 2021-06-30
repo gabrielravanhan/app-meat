@@ -1,9 +1,9 @@
 import { Restaurant } from './restaurant/restaurant.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 import { MEAT_API } from '../app.api';
-import { map } from 'rxjs/operators'
+import { catchError, map } from 'rxjs/operators'
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
@@ -16,11 +16,17 @@ export class RestaurantsService {
 
   restaurants(): Observable<Restaurant[]> {
     return this.http.get<Restaurant[]>(`${MEAT_API}/restaurants`).pipe(
-      map(restaurants => restaurants)
+      map(restaurants => restaurants),
+      catchError(erro => this.exibeErro(erro))
     );
   }
 
-  exibirMensagens(titulo: string, mensagem: string, tipo: string): void {
+  exibeErro(e: any): Observable<any> {
+    this.exibirMensagem('Erro!!!', 'Não foi possível realizar a operação!', 'toast-error');
+    return EMPTY;
+  }
 
+  exibirMensagem(titulo: string, mensagem: string, tipo: string): void {
+    this.toastr.show(mensagem, titulo, { closeButton: true, progressBar: true }, tipo)
   }
 }
