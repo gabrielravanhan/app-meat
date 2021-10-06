@@ -11,5 +11,4 @@ export class RestaurantDetailComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

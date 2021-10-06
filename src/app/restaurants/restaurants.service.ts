@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EMPTY, Observable } from 'rxjs';
 import { MEAT_API } from '../app.api';
-import { catchError, map } from 'rxjs/operators'
 import { ToastrService } from 'ngx-toastr';
+import { catchError, map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'

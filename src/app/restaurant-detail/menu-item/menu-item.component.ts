@@ -11,5 +11,4 @@ export class MenuItemComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
