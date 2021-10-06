@@ -29,4 +29,11 @@ export class RestaurantsService {
   exibirMensagem(titulo: string, mensagem: string, tipo: string): void {
     this.toastr.show(mensagem, titulo, { closeButton: true, progressBar: true }, tipo)
   }
+
+  restaurantById(id: String): Observable<Restaurant> {
+    return this.http.get<Restaurant>(`${MEAT_API}/restaurants/${id}`).pipe(
+      map(restaurants => this.restaurants),
+      catchError(erro => this.exibeErro(erro))
+    )
+  }
 }
