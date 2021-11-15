@@ -32,7 +32,7 @@ export class RestaurantsService {
 
   restaurantById(id: String): Observable<Restaurant> {
     return this.http.get<Restaurant>(`${MEAT_API}/restaurants/${id}`).pipe(
-      map(restaurants => this.restaurants),
+      map(restaurants => restaurants),
       catchError(erro => this.exibeErro(erro))
     )
   }
